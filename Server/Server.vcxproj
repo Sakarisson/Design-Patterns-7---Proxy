@@ -130,7 +130,9 @@
     <ClCompile Include="ChatServer.cpp" />
     <ClCompile Include="ClientConnection.cpp" />
     <ClCompile Include="ClientListener.cpp" />
+    <ClCompile Include="ClientProxy.cpp" />
     <ClCompile Include="Message.cpp" />
+    <ClCompile Include="Server.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
