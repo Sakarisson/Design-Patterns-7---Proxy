@@ -16,6 +16,7 @@
 #include <dirent.h>
 #endif
 
+#include "Address.h"
 #include "ClientProxy.h"
 #include "ChatLogger.h"
 #include "ClientListener.h"

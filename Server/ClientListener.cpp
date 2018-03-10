@@ -16,6 +16,8 @@
 
 #include "ClientListener.h"
 #include "Message.h"
+#include "Address.h"
+#include "Server.h"
 
 ClientListener::ClientListener(const Address &aListenAddr, Server *aServer)
 :iListenAddr(aListenAddr),iServer(aServer)

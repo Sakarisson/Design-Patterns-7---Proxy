@@ -11,6 +11,7 @@
 #include <fstream>
 #include <string>
 #include "Server.h"
+#include "Address.h"
 #include "ClientProxy.h"
 
 using namespace std;
