@@ -1,3 +1,9 @@
+/*
+ClientProxy.h
+Version 1
+Kristian Sakarisson
+*/
+
 #pragma once
 
 #include "Address.h"

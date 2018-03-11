@@ -1,3 +1,9 @@
+/*
+Server.h
+Version 1
+Kristian Sakarisson
+*/
+
 #pragma once
 
 #include <vector>

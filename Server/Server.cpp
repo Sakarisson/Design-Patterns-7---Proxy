@@ -1,3 +1,9 @@
+/*
+Server.cpp
+Version 1
+Kristian Sakarisson
+*/
+
 #include "Server.h"
 
 #include <iostream>
