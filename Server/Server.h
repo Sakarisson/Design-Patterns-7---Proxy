@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "ChatLogger.h"
 #include "ClientProxy.h"
 #include "Message.h"
@@ -13,4 +15,9 @@ public:
     void attach(ClientProxy*);
 
     void detach(ClientProxy*);
+private:
+    bool clientExists(ClientProxy*) const;
+private:
+    ChatLogger* _chatLogger;
+    std::vector<ClientProxy*> _clients;
 };
