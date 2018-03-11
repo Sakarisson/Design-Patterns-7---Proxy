@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+Server::~Server() {
+    delete _chatLogger;
+}
+
 void Server::addMessage(Message message) {
     if (_chatLogger == nullptr) {
         return;
@@ -29,7 +33,6 @@ void Server::attach(ClientProxy* clientProxy) {
 void Server::detach(ClientProxy* clientProxy) {
     size_t index = this->getClientIndex(clientProxy);
     if (index >= 0) {
-        delete _clients[index];
         _clients.erase(_clients.begin() + index);
     }
 }

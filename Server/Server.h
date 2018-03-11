@@ -3,13 +3,14 @@
 #include <vector>
 
 #include "ChatLogger.h"
+#include "ChatObserver.h"
 #include "ClientProxy.h"
 #include "Message.h"
 
 class Server {
 public:
     Server() {}
-    ~Server() {}
+    ~Server();
     void addMessage(Message);
     void attach(ChatLogger*);
     void attach(ClientProxy*);
