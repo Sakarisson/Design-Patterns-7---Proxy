@@ -1,6 +1,6 @@
 /*
 Server.h
-Version 1
+Version 2
 Kristian Sakarisson
 */
 
@@ -9,7 +9,6 @@ Kristian Sakarisson
 #include <vector>
 
 #include "ChatLogger.h"
-#include "ChatObserver.h"
 #include "ClientProxy.h"
 #include "Message.h"
 
@@ -18,14 +17,12 @@ public:
     Server() {}
     ~Server();
     void addMessage(Message);
-    void attach(ChatLogger*);
-    void attach(ClientProxy*);
+    void attach(ChatObserver*);
 
-    void detach(ClientProxy*);
+    void detach(ChatObserver*);
 private:
-    bool clientExists(ClientProxy*) const;
-    size_t getClientIndex(ClientProxy*) const;
+    bool observerExists(ChatObserver*) const;
+    size_t getObserverIndex(ChatObserver*) const;
 private:
-    ChatLogger* _chatLogger;
-    std::vector<ClientProxy*> _clients;
+    std::vector<ChatObserver*> _observers;
 };

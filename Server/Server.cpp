@@ -1,6 +1,6 @@
 /*
 Server.cpp
-Version 1
+Version 2
 Kristian Sakarisson
 */
 
@@ -9,48 +9,40 @@ Kristian Sakarisson
 #include <iostream>
 
 Server::~Server() {
-    delete _chatLogger;
+    for (std::vector<ChatObserver*>::iterator it = _observers.begin(); it != _observers.end(); ++it) {
+        delete (*it);
+    }
+    _observers.clear();
 }
 
 void Server::addMessage(Message message) {
-    if (_chatLogger == nullptr) {
-        return;
-    }
-    _chatLogger->update(message);
-    for (auto client : _clients) {
-        client->send(message);
+    for (auto observer : _observers) {
+        observer->update(message);
     }
     std::cout << message << std::endl;
 }
 
-void Server::attach(ChatLogger* chatLogger) {
-    if (_chatLogger != nullptr) {
-        delete _chatLogger;
-    }
-    _chatLogger = chatLogger;
-}
-
-void Server::attach(ClientProxy* clientProxy) {
-    if (!this->clientExists(clientProxy)) {
-        _clients.push_back(clientProxy);
+void Server::attach(ChatObserver* observer) {
+    if (!this->observerExists(observer)) {
+        _observers.push_back(observer);
     }
 }
 
-void Server::detach(ClientProxy* clientProxy) {
-    size_t index = this->getClientIndex(clientProxy);
+void Server::detach(ChatObserver* observer) {
+    size_t index = this->getObserverIndex(observer);
     if (index >= 0) {
-        _clients.erase(_clients.begin() + index);
+        _observers.erase(_observers.begin() + index);
     }
 }
 
-bool Server::clientExists(ClientProxy* clientProxy) const {
-    auto it = std::find(_clients.begin(), _clients.end(), clientProxy);
-    return it != _clients.end();
+bool Server::observerExists(ChatObserver* observer) const {
+    auto it = std::find(_observers.begin(), _observers.end(), observer);
+    return it != _observers.end();
 }
 
-size_t Server::getClientIndex(ClientProxy* clientProxy) const {
-    for (size_t i = 0; i < _clients.size(); i++) {
-        if (clientProxy == _clients[i]) {
+size_t Server::getObserverIndex(ChatObserver* observer) const {
+    for (size_t i = 0; i < _observers.size(); i++) {
+        if (observer == _observers[i]) {
             return i;
         }
     }
